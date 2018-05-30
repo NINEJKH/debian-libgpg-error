@@ -1,0 +1,25 @@
+sudo: required
+
+language: minimal
+
+services:
+  - docker
+
+env:
+  global:
+    - PACKAGE_NAME: libgpg-error
+    - BINTRAY_PROJECT: 9jkh/gnupg
+    # BINTRAY_USER
+    - secure: HjfEA7GrvQ9WlOe4ycx5gTkgkuPjZKYtTsaix4iJScxbYwZUP217316xxZoGflkUkSNkYNZ0N5wdgX++ZV8aHUnpfWnCAs8VWPMHvDfDDK1wbXpcmuD1ItbFayNyr0d/S6SithD/ExpTU/Pi0xIkIvyVWSfFemBY/YCyWyJVNvh5a506RgtjrwTNcXi8E8PIE0FCtZHvFTTLnNK2aaYsjU7JoPF+Mq0hzLduxgdkouuAtk43MopGdiThICU94vPjckXy5gg42JRQMWij3GPhTTuCEXgDRKnwOFdldcpBpqWWTv1PspqhNcIGQJku7cjY0ardarB5AREaoZDHfLXb4xC20axMQDC6kSiFRoQRglqbPNMGVViogfBlVFRRNuu90yooBVjEjepzlhxqvhemVMbdYGr2QQlNLeif1EecpR2//3sVuuxhPZbHWBJGsUyr73r9Liih2cPRJ6A5p778odzNchTexsNkfzy/9k7vPp4V4SLBT5CspPipYc4b2AZuuz/tnTBnt3oqKUblpLnq1YBEF2VWKi6qYT2FBThusrB5M9nRzP42u6CrkJznSxQKn9xYF53dAM0pipPopem2szk5p7BJSCw8wFFIdaG1uD4qYdd2bzsvVHzY7PfcAwb73rYxXsvcEfkQiZnaSUcalkD0RYAjQjPbvPBKfmdHzDc=
+    # BINTRAY_API_KEY
+    - secure: GolvhdMYsL0bZdAbAI2XQ3DlOAU367NAjzd5mmzf8YtMa/ojHtCdYmYLnoiJ026zJOVFsKvsN4FaUlkVYWdaDGj3aycBdAwhe3aZf0wYjR1OYuvXgrFOJWELSUKt2zZ7+7eUcEcwtzG4AvvcvqknAbc34iPHLupO0D2brsYX9Ex3p1v4lyf/2YBB/BgaS+wtLcOuS6Xmonkj6SdbaaYB7ewh6CLlqhsvgnY9Mmk7ZzVPUgOLa5ukVmeFlshZOnmzVB4lxmUJauPBGLQ2zPBYES6k30VSrM5cTCgLuon19aypqaTCHJV98sVb7KBya8cxfWkvgSt2tWevIp4g7oVDASLU+CFs/a7WsLmQLrm3qCKz6BRbchky4Ca47GuQ7/FUeT3yiapqT2jaIhzotTgHQy1OIb3YF2C4pgeKPORueWCxfJw0M3CBFmZKwZSZZiNrgR0MFjiJBYG1Le6BYLwz1Ch1HdnbNHMTz4exkvMen7I56Esapget6GYbkhgySXKbXaGOVNW/jla1flATL9+HQZz7V6/mirjwlNYn5XsdbtAkkBg4BLoxyHOTwVuTX02NfhZ6DIUvf0PYxrD/mXsDXYkZJwtbMfHpSQXTbzTk+Bm3h5rqJ2lAaHU5JYFLlXfQ7+lAvAC3sh/6ybI2F2EHIrK139YAe8D0/B7/3Atlufg=
+
+before_install:
+  - ./build.sh
+
+deploy:
+  provider: script
+  script: "./publish.sh"
+  skip_cleanup: true
+  on:
+    branch: master
